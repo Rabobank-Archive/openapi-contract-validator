@@ -1,0 +1,219 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "Employees test specs"
+    },
+    "paths": {
+      "/employees/list": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/response-list"
+                  }
+                }
+              }
+            },
+            "default": {
+              "description": "Some error",
+              "content": {
+                "application/problem+json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/problem-json"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "requestBody": {
+            "description": "List all or query a subset of employees",
+            "required": false,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/request-query"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/response-list"
+                  }
+                }
+              }
+            },
+            "default": {
+              "description": "Some error",
+              "content": {
+                "application/problem+json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/problem-json"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/employees/query": {
+        "post": {
+          "requestBody": {
+            "description": "Query a subset of employees",
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/request-query"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/response-query"
+                  }
+                }
+              }
+            },
+            "default": {
+              "description": "Some error",
+              "content": {
+                "application/problem+json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/problem-json"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "request-query": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "$ref": "#/components/schemas/query-number"
+            },
+            "name": {
+              "$ref": "#/components/schemas/query-string"
+            },
+            "surname": {
+              "$ref": "#/components/schemas/query-string"
+            }
+          }
+        },
+        "response-query": {
+          "type": "object",
+          "properties": {
+            "matching_employees": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/employees-basic-details"
+              }
+            }
+          }
+        },
+        "response-list": {
+          "type": "object",
+          "properties": {
+            "employees": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/employees-basic-details"
+              }
+            }
+          }
+        },
+        "employees-basic-details": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "number"
+            },
+            "name": {
+              "type": "string"
+            },
+            "department": {
+              "type": "string"
+            }
+          }
+        },
+        "query-string": {
+          "type": "object",
+          "maxProperties": 1,
+          "properties": {
+            "match": {
+              "type": "string"
+            },
+            "pattern": {
+              "type": "string"
+            }
+          }
+        },
+        "query-number": {
+          "type": "object",
+          "properties": {
+            "from": {
+              "type": "number"
+            },
+            "to": {
+              "type": "number"
+            }
+          }
+        },
+        "problem-json": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "format": "uri",
+              "description": "An absolute URI that identifies the problem type. When dereferenced, it SHOULD provide human-readable documentation for the problem type (e.g., using HTML).",
+              "default": "about:blank"
+            },
+            "title": {
+              "type": "string",
+              "description": "A short, summary of the problem type. Written in english and readable for engineers (usually not suited for non technical stakeholders and not localized);",
+              "example": "Service Unavailable"
+            },
+            "status": {
+              "type": "integer",
+              "format": "int32",
+              "description": "The HTTP status code generated by the origin server for this occurrence of the problem.",
+              "minimum": 100,
+              "maximum": 600,
+              "exclusiveMaximum": true,
+              "example": 500
+            },
+            "detail": {
+              "type": "string",
+              "description": "A human readable explanation specific to this occurrence of the problem.",
+              "example": "Connection to database timed out"
+            },
+            "instance": {
+              "type": "string",
+              "format": "uri",
+              "description": "An absolute URI that identifies the specific occurrence of the problem. It may or may not yield further information if dereferenced."
+            }
+          }
+        }
+      }
+    }
+  }

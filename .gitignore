@@ -1,0 +1,38 @@
+# Generated folders
+**/[dD]iff
+**/[oO]utput
+**/[sS]creenshots
+**/[lL]ogs
+**/[tT]arget
+**/[cC]overage
+**/[dD]ocumentation
+**/[rR]eports
+
+# Environment specific things
+yarn.lock
+.idea/
+.vscode/
+*.DS_Store
+*.swp
+
+# Build artifacts
+built/
+dist/
+spec/built/
+node_modules/
+**/node_modules/
+website/bower_components/
+website/build/
+website/docgen/build/
+.nyc_output
+.stryker-tmp
+
+# Explicitly marked as not tracked
+*.untracked.*
+*.secret.*
+*.tmp.*
+**/tmp.*
+
+# Other stuff
+out/
+*.log

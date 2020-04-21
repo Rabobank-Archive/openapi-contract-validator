@@ -1,0 +1,11 @@
+{
+    "include": [
+        "**/*"
+    ],
+    "reporter": [
+        "html",
+        "text-summary",
+        "cobertura"
+    ],
+    "report-dir": "./reports/coverage"
+}

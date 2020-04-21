@@ -1,0 +1,238 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0",
+    "title": "test specs"
+  },
+  "paths": {
+    "/endpoint": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json;version=1": {
+                "schema": {
+                  "$ref": "#/components/schemas/response"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "request": {
+        "type": "object",
+        "required": [
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        }
+      },
+      "response": {
+        "type": "object",
+        "required": [
+          "quiz",
+          "updated"
+        ],
+        "properties": {
+          "quiz": {
+            "$ref": "#/components/schemas/quiz"
+          },
+          "updated": {
+            "$ref": "#/components/schemas/updated"
+          },
+          "changelog": {
+            "$ref": "#/components/schemas/changelog"
+          },
+          "numbers": {
+            "$ref": "#/components/schemas/numbers"
+          },
+          "popular": {
+            "type": "boolean"
+          }
+        }
+      },
+      "quiz": {
+        "type": "object",
+        "required": [
+          "category"
+        ],
+        "properties": {
+          "category": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/category"
+            }
+          }
+        }
+      },
+      "category": {
+        "type": "object",
+        "required": [
+          "name",
+          "questions"
+        ],
+        "properties": {
+          "name": {
+            "pattern": "^[a-z]+$",
+            "type": "string",
+            "maxLength": 50
+          },
+          "questions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/question"
+            }
+          }
+        }
+      },
+      "question": {
+        "type": "object",
+        "required": [
+          "question",
+          "answer"
+        ],
+        "properties": {
+          "question": {
+            "type": "string",
+            "minLength": 10,
+            "maxLength": 250
+          },
+          "options": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 10,
+            "items": {
+              "$ref": "#/components/schemas/option"
+            }
+          },
+          "answer": {
+            "type": "object",
+            "required": [
+              "answer"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "maxLength": 1
+              },
+              "answer": {
+                "type": "string",
+                "maxLength": 100
+              }
+            }
+          }
+        }
+      },
+      "option": {
+        "type": "object",
+        "required": [
+          "answer"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "maxLength": 1
+          },
+          "answer": {
+            "type": "string",
+            "maxLength": 100
+          }
+        }
+      },
+      "updated": {
+        "type": "object",
+        "minProperties": 1,
+        "properties": {
+          "year": {
+            "type": "number",
+            "minimum": 2000,
+            "maximum": 3000
+          },
+          "month": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 12
+          },
+          "day": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 31
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "time": {
+            "type": "object",
+            "maxProperties": 3,
+            "required": [
+              "minute"
+            ],
+            "properties": {
+              "hour": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 24
+              },
+              "minute": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 60
+              },
+              "second": {
+                "type": "number",
+                "exclusiveMinimum": true,
+                "exclusiveMaximum": true,
+                "minimum": 0,
+                "maximum": 60
+              },
+              "millisecond": {
+                "x-requireAllFields-ignore": true,
+                "multipleOf": 2,
+                "type": "number",
+                "minimum": 0,
+                "maximum": 999
+              }
+            }
+          }
+        }
+      },
+      "changelog": {
+        "type": "array",
+        "uniqueItems": true,
+        "items": {
+          "type": "string"
+        }
+      },
+      "numbers": {
+        "type": "object",
+        "properties": {
+          "a": {
+            "type": "number",
+            "format": "float"
+          },
+          "b": {
+            "type": "number",
+            "format": "double"
+          },
+          "c": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "d": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      }
+    }
+  }
+}
