@@ -1,0 +1,30 @@
+{
+    "$schema": "https://raw.githubusercontent.com/stryker-mutator/stryker/master/packages/api/schema/stryker-core.json",
+    "mutate": [
+        "src/**/*.js",
+        "!src/default-config.js"
+    ],
+    "mutator": {
+        "name": "javascript",
+        "excludedMutations": []
+    },
+    "packageManager": "npm",
+    "reporters": [
+        "html",
+        "progress"
+    ],
+    "testRunner": "mocha",
+    "testFramework": "mocha",
+    "coverageAnalysis": "perTest",
+    "transpilers": [],
+    "mochaOptions": {
+        "spec": [
+            "./test/**/*.js"
+        ]
+    },
+    "thresholds": {
+        "high": 80,
+        "low": 60,
+        "break": 50
+    }
+}
