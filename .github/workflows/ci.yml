@@ -35,4 +35,4 @@ jobs:
       uses: pavi2410/html-preview-action@v1a
       with:
         msg: Mutation test report ready
-        html_file: reports/mutation/index.html
+        html_file: reports/mutation/html/index.html
