@@ -1,5 +1,7 @@
 # Openapi contract validator
 
+DONT PUSH THIS CHANGE MAN
+
 A contract compliance validator for OpenAPI Schemas. Validate a request-response pair against an OpenAPI Schema.
 
 > Note: This is not a validator for the OpenAPI Schemas (OAS) themselves. This package uses an OAS to validate a request-response pair against the truth of the OAS.
