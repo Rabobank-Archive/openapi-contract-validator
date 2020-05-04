@@ -21,6 +21,9 @@
     "test",
     "contract"
   ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
   "author": "Sander van Beek",
   "license": "Apache-2.0",
   "dependencies": {
