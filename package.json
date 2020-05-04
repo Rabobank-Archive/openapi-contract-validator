@@ -22,7 +22,7 @@
     "contract"
   ],
   "author": "Sander van Beek",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "dependencies": {
     "@hapi/accept": "^5.0.1",
     "ajv": "^6.12.0",

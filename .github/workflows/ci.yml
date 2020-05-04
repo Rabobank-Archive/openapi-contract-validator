@@ -14,10 +14,10 @@ jobs:
 
     strategy:
       matrix:
-        node-version: 
+        node-version:
           - 10.x
           - 12.x
-          - 13.x
+          - 14.x
 
     steps:
     - uses: actions/checkout@v2
@@ -29,10 +29,5 @@ jobs:
     - run: npm ci
     - run: npm run lint
     - run: npm run test -- --forbid-only
-    
+
     - run: npm run test:mutation
-    - name: Mutation report
-      uses: pavi2410/html-preview-action@v1a
-      with:
-        msg: Mutation test report ready
-        html_file: reports/mutation/html/index.html
